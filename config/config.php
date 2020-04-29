@@ -9,4 +9,4 @@ define('HOST', 'localhost');
 define('DBNAME', 'cem_new');
 define('CHARSET', 'utf8');
 define('USER', 'richieri');
-define('PASSWORD', 'Beatricy1812@');
+define('PASSWORD', 'ClaraBeatricy1812@');
