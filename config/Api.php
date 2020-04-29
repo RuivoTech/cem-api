@@ -19,6 +19,8 @@ class Api {
         if($url[1] == "cem-api"){
             array_shift($url);
             array_shift($url);
+        }elseif(Empty($url[0])){
+            array_shift($url);
         }
         
         return $url;
