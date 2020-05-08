@@ -17,6 +17,7 @@ class Membro {
     public $contato;
     public $endereco;
     public $dadosIgreja;
+    public $ministeriosMembro;
     public $chEsContato;
     public $chEsEndereco;
     public $chEsIgreja;
@@ -37,6 +38,7 @@ class Membro {
             $this->setChEsContato($row["chEsContato"]);
             $this->setChEsEndereco($row["chEsEndereco"]);
             $this->setChEsIgreja($row["chEsIgreja"]);
+            
             
             $this->setContato(new Contato($row));
             $this->setEndereco(new Endereco($row));
@@ -277,6 +279,22 @@ class Membro {
     /**
      * @return mixed
      */
+    public function getMinisteriosMembro()
+    {
+        return $this->ministeriosMembro;
+    }
+    
+    /**
+     * @param mixed $ministeriosMembro
+     */
+    public function setMinisteriosMembro($ministeriosMembro)
+    {
+        $this->ministeriosMembro = $ministeriosMembro;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getChEsContato()
     {
         return $this->chEsContato;
@@ -321,6 +339,5 @@ class Membro {
     {
         $this->chEsIgreja = $chEsIgreja;
     }
-
 }
 

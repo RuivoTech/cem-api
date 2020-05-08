@@ -2,7 +2,7 @@
 
 class PermissaoDao {
     public function inserir(Permissao $permissao){
-        if(empty($permissao)){
+        if(Empty($permissao)){
             throw new Exception("Variável dados está vazia!", 500);
         }
         
@@ -18,16 +18,16 @@ class PermissaoDao {
                             chEsUsuario = %s,
                             chEsMenuPermissao = %s,
                             permissao = %s", $valores);
-        echo $sql."\n";
-        Conexao::executarUpdate($sql);
         
+        Conexao::executarUpdate($sql);
+        echo $sql;
         $permissao->setId(Conexao::ObterId());
         
         return $permissao;
     }
     
     public function alterar(Permissao $permissao){
-        if(empty($permissao)){
+        if(Empty($permissao)){
             throw new Exception("Variável dados está vazia!", 500);
         }
         
@@ -48,9 +48,9 @@ class PermissaoDao {
                             permissao = %s
                         WHERE
                             id = %s", $valores);
-        echo $sql;
-        Conexao::executarUpdate($sql);
         
+        Conexao::executarUpdate($sql);
+        echo $sql;
         return $permissao;
     }
     
