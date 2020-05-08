@@ -14,6 +14,15 @@ class MembroDao {
         $contato = $contatoDao->inserir($membro->getContato());
         $endereco = $enderecoDao->inserir($membro->getEndereco());
         $dadosIgreja = $dadosIgrejaDao->inserir($membro->getDadosIgreja());
+        $ministerioMembroService = new MinisterioMembroService();
+
+        $ministerioMembroService->removerPorMembro($membro->getId());
+
+        for ($i=0; $i < count($membro->getMinisteriosMembro()); $i++) { 
+            if($membro->getMinisteriosMembro()[$i]->getChecked()) {
+                $ministerioMembroService->salvar($membro->getMinisteriosMembro()[$i]);
+            }
+        }
         
         $valores = array(
             $membro->getNome(),
@@ -51,20 +60,26 @@ class MembroDao {
     
     public function alterar(Membro $membro){
         if(empty($membro)){
-            throw new Exception("Vari�vel dados est� vazia!", 500);
+            throw new Exception("Variável dados está vazia!", 500);
         }
         
         $contatoDao = new ContatoDao();
         $enderecoDao = new EnderecoDao();
         $dadosIgrejaDao = new DadosIgrejaDao();
-        
-        $membro->getContato()->setId($membro->getChEsContato());
-        $membro->getEndereco()->setId($membro->getChEsEndereco());
-        $membro->getDadosIgreja()->setId($membro->getChEsIgreja());
-                
+        $ministerioMembroDao = new MinisterioMembroDao();
+
         $contatoDao->alterar($membro->getContato());
         $enderecoDao->alterar($membro->getEndereco());
         $dadosIgrejaDao->alterar($membro->getDadosIgreja());
+
+        $ministerioMembroDao->removerPorMembro($membro->getId());
+        
+        for ($i=0; $i < count($membro->getMinisteriosMembro()); $i++) { 
+            
+            if(boolval($membro->getMinisteriosMembro()[$i]->getChecked())) {
+                $ministerioMembroDao->inserir($membro->getMinisteriosMembro()[$i]);
+            }
+        }
         
         $valores = array(
             $membro->getId(),
@@ -143,16 +158,16 @@ class MembroDao {
         
         $dadosRetorno = array();
         for ($i = 0; $i < count($result); $i++) {
-            $ministerioDao = new MinisterioDao();
+            $ministerioMembroDao = new MinisterioMembroDao();
             
             $membro = new Membro($result[$i]);
             
-            $ministerios = $ministerioDao->localizarMinisterioPorMembro($membro->getId());
+            $ministerios = $ministerioMembroDao->localizarPorMembro($membro->getId());
             
             $membro->getContato()->setId($membro->getChEsContato());
             $membro->getEndereco()->setId($membro->getChEsEndereco());
             $membro->getDadosIgreja()->setId($membro->getChEsIgreja());
-            $membro->getDadosIgreja()->setMinisterios($ministerios);
+            $membro->setMinisteriosMembro($ministerios);
             
             $dadosRetorno[] = $membro;
         }

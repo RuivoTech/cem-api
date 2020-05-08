@@ -7,9 +7,13 @@ class Ministerio {
     public $descricao;
     
     public function __construct($row = array()) {
-        $this->setId($row["id"]);
-        $this->setNome($row["nome"]);
-        $this->setDescricao($row["descricao"]);
+        if(!Empty($row)){
+            $this->setId($row["id"]);
+            $this->setNome($row["nome"]);
+            $this->setDescricao($row["descricao"]);
+        }else{
+            $this->setId(0);
+        }
     }
     
     public function ehNovo() {

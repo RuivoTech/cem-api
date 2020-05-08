@@ -26,9 +26,11 @@ class UsuarioDao {
         $permissaoService = new PermissaoService();
         
         for ($i = 0; $i < count($usuario->getPermissoes()); $i++) {
-            $usuario->getPermissoes()[$i]->setChEsUsuario($usuario->getId());
-            
-            $permissaoService->salvar($usuario->getPermissoes()[$i]);
+            if(boolval($usuario->getPermissoes()[$i]->getPermissao())) {
+                $usuario->getPermissoes()[$i]->setChEsUsuario($usuario->getId());
+                
+                $permissaoService->salvar($usuario->getPermissoes()[$i]);
+            }
         }
         
         return $usuario;
@@ -58,13 +60,17 @@ class UsuarioDao {
                             password = '%s'
                         WHERE id = %s
                         ", $dados);
-        echo $sql;
+        
         Conexao::executarUpdate($sql);
         
-        $permissaoService = new PermissaoService();
+        $permissaoDao = new Permissaodao();
+
+        $permissaoDao->removerPorUsuario($usuario->getId());
         
-        for ($i = 0; $i < count($usuario->getPermissoes()); $i++) {            
-            $permissaoService->salvar($usuario->getPermissoes()[$i]);
+        for ($i = 0; $i < count($usuario->getPermissoes()); $i++) {
+            if(boolval($usuario->getPermissoes()[$i]->getPermissao())) {
+                $permissaoDao->inserir($usuario->getPermissoes()[$i]);
+            }
         }
         
         return $usuario;

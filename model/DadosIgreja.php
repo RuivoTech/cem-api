@@ -7,7 +7,7 @@
  */
 class DadosIgreja {
     public $explicitType = "dadosIgreja";
-    public $id, $isBatizado, $dataBatismo, $igrejaBatizado, $ultimoPastor, $ultimaIgreja, $ministerios;
+    public $id, $isBatizado, $dataBatismo, $igrejaBatizado, $ultimoPastor, $ultimaIgreja;
     
     public function __construct($row) {
         $this->setId($row["id"]);

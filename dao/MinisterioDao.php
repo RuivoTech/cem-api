@@ -102,7 +102,7 @@ class MinisterioDao {
         
         $result = Conexao::executarQuery($sql);
         
-        $dadosRetorno = array();
+        $dadosRetorno = [];
         for ($i = 0; $i < count($result); $i++) {
             $ministerio = new Ministerio($result[$i]);
             

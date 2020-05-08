@@ -84,7 +84,7 @@ class Api {
     
     private function converterParaObjeto($dados) {        
         $items = array();
-        error_log(print_r($dados, true));
+        
         foreach ($dados as $chave => $valor) {
             if(is_array($valor)) {
                 for ($i = 0; $i < count($valor); $i++) {
