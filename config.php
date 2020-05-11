@@ -1,6 +1,6 @@
 <?php
 
-require_once '../cem-api/config/autoload.php';
+require_once './config/autoload.php';
 
 /*
  * Constantes de par�metros para configura��o da conex�o
