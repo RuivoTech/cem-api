@@ -1,12 +1,12 @@
 <?php
-require_once '../cem-api/config.php';
-require_once '../cem-api/config/Conexao.php';
-require_once "../cem-api/dao/MembroDao.php";
-require_once '../cem-api/model/Membro.php';
-require_once '../cem-api/model/Contato.php';
-require_once '../cem-api/model/Endereco.php';
-require_once '../cem-api/model/DadosIgreja.php';
-require_once '../cem-api/utils/Filtros.php';
+require_once './config.php';
+require_once './config/Conexao.php';
+require_once "./dao/MembroDao.php";
+require_once './model/Membro.php';
+require_once './model/Contato.php';
+require_once './model/Endereco.php';
+require_once './model/DadosIgreja.php';
+require_once './utils/Filtros.php';
 
 // chamando os arquivos necess�rios do DOMPdf
 require_once 'dompdf/lib/html5lib/Parser.php';
