@@ -63,13 +63,15 @@ class UsuarioDao {
         
         Conexao::executarUpdate($sql);
         
-        $permissaoDao = new Permissaodao();
-
-        $permissaoDao->removerPorUsuario($usuario->getId());
+        if(!Empty($usuario->getPermissoes())) {
+            $permissaoDao = new Permissaodao();
+            
+            $permissaoDao->removerPorUsuario($usuario->getId());
         
-        for ($i = 0; $i < count($usuario->getPermissoes()); $i++) {
-            if(boolval($usuario->getPermissoes()[$i]->getPermissao())) {
-                $permissaoDao->inserir($usuario->getPermissoes()[$i]);
+            for ($i = 0; $i < count($usuario->getPermissoes()); $i++) {
+                if(boolval($usuario->getPermissoes()[$i]->getPermissao())) {
+                    $permissaoDao->inserir($usuario->getPermissoes()[$i]);
+                }
             }
         }
         
