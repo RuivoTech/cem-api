@@ -3,10 +3,10 @@
 require_once './config/autoload.php';
 
 /*
- * Constantes de par�metros para configura��o da conex�o
+ * Constantes de parâmetros para configuração da conexão
  */
 define('HOST', 'localhost');
-define('DBNAME', 'cem_new');
+define('DBNAME', 'database');
 define('CHARSET', 'utf8');
-define('USER', 'richieri');
-define('PASSWORD', 'ClaraBeatricy1812@');
+define('USER', 'username');
+define('PASSWORD', 'password');
